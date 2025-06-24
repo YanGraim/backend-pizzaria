@@ -8,6 +8,7 @@ dist/
 build/
 
 # Prisma
+/src/generated/prisma
 prisma/migrations/
 .env
 .env.local
