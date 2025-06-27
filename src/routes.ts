@@ -4,6 +4,7 @@ import { AuthUserController } from "./controllers/user/AuthUserController";
 import { DetailUserController } from "./controllers/user/DetailUserController";
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 import { CreateCategoryController } from "./controllers/category/CreateCategoryController";
+import { ListCategoryController } from "./controllers/category/ListCategoryController";
 
 const router = Router();
 
@@ -17,6 +18,11 @@ router.post("/session", new AuthUserController().handle);
 router.get("/me", isAuthenticated, new DetailUserController().handle);
 
 // rotas categories //
+
+//POST 
 router.post("/category", isAuthenticated, new CreateCategoryController().handle);
+
+//GET
+router.get("/categorys", isAuthenticated, new ListCategoryController().handle);
 
 export { router }
