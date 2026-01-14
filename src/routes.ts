@@ -2,6 +2,7 @@ import { Router } from "express";
 import { AuthUserController } from "./controllers/user/AuthUserController";
 import { CreateUserController } from "./controllers/user/CreateUserController";
 import { DetailUserController } from "./controllers/user/DetailUserController";
+import { isAuthenticated } from "./middlewares/isAuthenticated";
 import { validateSchema } from "./middlewares/validateSchema";
 import { authUserSchema, createUserSchema } from "./schemas/userSchema";
 
@@ -20,6 +21,6 @@ router.post(
   new AuthUserController().handle,
 );
 
-router.get("/me", new DetailUserController().handle);
+router.get("/me", isAuthenticated, new DetailUserController().handle);
 
 export { router };

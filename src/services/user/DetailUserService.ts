@@ -1,11 +1,7 @@
 import prismaClient from "../../prisma";
 
-interface DetailUserProps {
-  user_id: string;
-}
-
 class DetailUserService {
-  async execute({ user_id }: DetailUserProps) {
+  async execute(user_id: string) {
     try {
       const user = await prismaClient.user.findFirst({
         where: {
@@ -26,6 +22,7 @@ class DetailUserService {
 
       return user;
     } catch (error) {
+      console.log(error);
       throw new Error("Erro ao buscar usuário.");
     }
   }
