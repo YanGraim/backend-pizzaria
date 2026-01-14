@@ -3,6 +3,7 @@ import { CreateCategoryController } from "./controllers/category/CreateCategoryC
 import { AuthUserController } from "./controllers/user/AuthUserController";
 import { CreateUserController } from "./controllers/user/CreateUserController";
 import { DetailUserController } from "./controllers/user/DetailUserController";
+import { isAdmin } from "./middlewares/isAdmin";
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 import { validateSchema } from "./middlewares/validateSchema";
 import { authUserSchema, createUserSchema } from "./schemas/userSchema";
@@ -28,6 +29,7 @@ router.get("/me", isAuthenticated, new DetailUserController().handle);
 router.post(
   "/category",
   isAuthenticated,
+  isAdmin,
   new CreateCategoryController().handle,
 );
 
