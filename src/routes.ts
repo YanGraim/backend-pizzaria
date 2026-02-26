@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { CreateCategoryController } from "./controllers/category/CreateCategoryController";
 import { ListCategoryController } from "./controllers/category/ListCategoryController";
+import { CreateProductController } from "./controllers/product/CreateProductController";
 import { AuthUserController } from "./controllers/user/AuthUserController";
 import { CreateUserController } from "./controllers/user/CreateUserController";
 import { DetailUserController } from "./controllers/user/DetailUserController";
@@ -37,5 +38,13 @@ router.post(
 );
 
 router.get("/categories", isAuthenticated, new ListCategoryController().handle);
+
+// Rotas product
+router.post(
+  "/product",
+  isAuthenticated,
+  isAdmin,
+  new CreateProductController().handle,
+);
 
 export { router };
